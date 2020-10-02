@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using YoYo_Web_App.Models;
+using YoYo_Web_App.Services;
 
 namespace YoYo_Web_App.Controllers
 {
@@ -20,18 +15,11 @@ namespace YoYo_Web_App.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var dataLoader = new DataLoader();
+            return View(dataLoader.LoadPlayersData());
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+       
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

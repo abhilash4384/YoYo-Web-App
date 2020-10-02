@@ -1,8 +1,65 @@
-﻿@{
+﻿@model List<YoYo_Web_App.Models.PlayersModel>
+@{
     ViewData["Title"] = "Home Page";
+    var data = Model.ToList();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <div class="row justify-content-center">
+        <button class="btn align-self-center"><i class="fa fa-home"></i> Play</button>
+    </div>
+
+    <div class="row p-3">
+        <div class="col-4">
+            <p class="text-center">Next<br />Shuffle</p>
+            <p class="text-center">0:00 s</p>
+        </div>
+
+        <div class="col-4">
+            <p class="text-center">Total<br />Time</p>
+            <p class="text-center">0:00 m</p>
+        </div>
+        <div class="col-4">
+            <p class="text-center">Total<br />Distance</p>
+            <p class="text-center"></p>
+            <p class="text-center">0 m</p>
+        </div>
+    </div>
+
+    <div class="row pt-2 border-bottom border-dark">
+        <div class="col-12">
+            <p class="text-info font-weight-bold">Track</p>
+        </div>
+
+    </div>
+
+        @if (Model != null)
+        {
+            int index = 1;
+            int totalRecords = Model.Count();
+            foreach (var item in Model)
+            {
+                <div class="row p-1 pt-2 border-bottom @(index == totalRecords ? "border-dark" : "")">
+                    <div class="col-1">
+                        <p class="text-info">@Html.DisplayFor(modelItem => index)</p>
+                    </div>
+                    <div class="col-5">
+                        @Html.DisplayFor(modelItem => item.firstName)
+                        @Html.DisplayFor(modelItem => item.lastName)
+                    </div>
+
+                    <div class="col-3">
+                        <button class="warning-btn">Warn</button>
+                    </div>
+
+                    <div class="col-3">
+                        <button class="danger-btn">Stop</button>
+                    </div>
+                </div>
+                index++;
+            }
+        }
+
+
+
 </div>
