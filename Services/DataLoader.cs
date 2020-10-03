@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using YoYo_Web_App.Models;
+
 
 namespace YoYo_Web_App.Services
 {
@@ -10,8 +13,14 @@ namespace YoYo_Web_App.Services
     {
         public IList<PlayersModel> LoadPlayersData()
         {
-            PlayersModel[] listOfPlayers = new PlayersModel[15]
+            using(StreamReader r = new StreamReader(@"wwwroot/mockdata/fitnessrating_beeptest.json"))
             {
+                string json = r.ReadToEnd();
+                var jsonStr = JsonSerializer.Deserialize<FintessRatingModel>(json);
+            }
+
+            PlayersModel[] listOfPlayers = new PlayersModel[15]
+                {
                new PlayersModel() { firstName = "Ashton", lastName = "Eaton" },
                new PlayersModel() { firstName = "Brayan", lastName = "Clay" },
                new PlayersModel() { firstName = "Dean", lastName = "Karnazes" },
@@ -27,7 +36,7 @@ namespace YoYo_Web_App.Services
                new PlayersModel() { firstName = "Salina", lastName = "Kayele" },
                new PlayersModel() { firstName = "Ronaldo", lastName = "Christiano" },
                new PlayersModel() { firstName = "Stephinie", lastName = "Mcmohan" }
-            };
+                };
 
             return listOfPlayers.ToList<PlayersModel>();
         }
