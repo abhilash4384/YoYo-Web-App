@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,10 +15,20 @@ namespace YoYo_Web_App.Services
     {
         public IList<PlayersModel> LoadPlayersData()
         {
-            using(StreamReader r = new StreamReader(@"wwwroot/mockdata/fitnessrating_beeptest.json"))
+            using (StreamReader r = new StreamReader(@"wwwroot/mockdata/fitnessrating_beeptest.json"))
             {
-                string json = r.ReadToEnd();
-                var jsonStr = JsonSerializer.Deserialize<FintessRatingModel>(json);
+                string jsonString = r.ReadToEnd();
+                IList<FintessRatingModel> fintessRatinngMetaData = JArray.Parse(jsonString).Select(ratingObj => new FintessRatingModel
+                {
+                    AccumulatedShuttleDistance = (int)ratingObj["AccumulatedShuttleDistance"],
+                    SpeedLevel = (int)ratingObj["SpeedLevel"],
+                    ShuttleNo = (int)ratingObj["ShuttleNo"],
+                    Speed = (float)ratingObj["Speed"],
+                    LevelTime = (float)ratingObj["LevelTime"],
+                    CommulativeTime = (string)ratingObj["ApproxVo2Max"],
+                    StartTime = (string)ratingObj["StartTime"],
+                    ApproxVo2Max = (string)ratingObj["ApproxVo2Max"]
+                }).ToList();
             }
 
             PlayersModel[] listOfPlayers = new PlayersModel[15]
