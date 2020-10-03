@@ -16,10 +16,9 @@ namespace YoYo_Web_App.Controllers
         public IActionResult Index()
         {
             var dataLoader = new DataLoader();
-            return View(dataLoader.LoadPlayersData());
+            return View(dataLoader.GetPlayersData());
         }
 
        
-
     }
 }

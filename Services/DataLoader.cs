@@ -13,25 +13,9 @@ namespace YoYo_Web_App.Services
 {
     public class DataLoader
     {
-        public IList<PlayersModel> LoadPlayersData()
+        public YoYoViewModel GetPlayersData()
         {
-            using (StreamReader r = new StreamReader(@"wwwroot/mockdata/fitnessrating_beeptest.json"))
-            {
-                string jsonString = r.ReadToEnd();
-                IList<FintessRatingModel> fintessRatinngMetaData = JArray.Parse(jsonString).Select(ratingObj => new FintessRatingModel
-                {
-                    AccumulatedShuttleDistance = (int)ratingObj["AccumulatedShuttleDistance"],
-                    SpeedLevel = (int)ratingObj["SpeedLevel"],
-                    ShuttleNo = (int)ratingObj["ShuttleNo"],
-                    Speed = (float)ratingObj["Speed"],
-                    LevelTime = (float)ratingObj["LevelTime"],
-                    CommulativeTime = (string)ratingObj["ApproxVo2Max"],
-                    StartTime = (string)ratingObj["StartTime"],
-                    ApproxVo2Max = (string)ratingObj["ApproxVo2Max"]
-                }).ToList();
-            }
-
-            PlayersModel[] listOfPlayers = new PlayersModel[15]
+            var pleayersList = new List<PlayersModel>
                 {
                new PlayersModel() { firstName = "Ashton", lastName = "Eaton" },
                new PlayersModel() { firstName = "Brayan", lastName = "Clay" },
@@ -50,7 +34,28 @@ namespace YoYo_Web_App.Services
                new PlayersModel() { firstName = "Stephinie", lastName = "Mcmohan" }
                 };
 
-            return listOfPlayers.ToList<PlayersModel>();
+
+            IList<FintessRatingModel> fintessRatinngMetaData;
+            using (StreamReader r = new StreamReader(@"wwwroot/mockdata/fitnessrating_beeptest.json"))
+            {
+                string jsonString = r.ReadToEnd();
+                fintessRatinngMetaData = JArray.Parse(jsonString).Select(ratingObj => new FintessRatingModel
+                {
+                    AccumulatedShuttleDistance = (int)ratingObj["AccumulatedShuttleDistance"],
+                    SpeedLevel = (int)ratingObj["SpeedLevel"],
+                    ShuttleNo = (int)ratingObj["ShuttleNo"],
+                    Speed = (float)ratingObj["Speed"],
+                    LevelTime = (float)ratingObj["LevelTime"],
+                    CommulativeTime = (string)ratingObj["ApproxVo2Max"],
+                    StartTime = (string)ratingObj["StartTime"],
+                    ApproxVo2Max = (string)ratingObj["ApproxVo2Max"]
+                }).ToList();
+            }
+
+            return new YoYoViewModel { pleayersList = pleayersList, fintessRatinngMetaData = fintessRatinngMetaData };
+
         }
+
+
     }
 }

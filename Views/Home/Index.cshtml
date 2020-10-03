@@ -1,7 +1,6 @@
-﻿@model List<YoYo_Web_App.Models.PlayersModel>
+﻿@model YoYo_Web_App.Models.YoYoViewModel
 @{
     ViewData["Title"] = "Home Page";
-    var data = Model.ToList();
 }
 
 <div>
@@ -36,8 +35,8 @@
         @if (Model != null)
         {
             int index = 1;
-            int totalRecords = Model.Count();
-            foreach (var item in Model)
+            int totalRecords = Model.pleayersList.Count();
+            foreach (var item in Model.pleayersList)
             {
                 <div class="row p-1 pt-2 border-bottom @(index == totalRecords ? "border-dark" : "")">
                     <div class="col-1">
