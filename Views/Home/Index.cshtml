@@ -5,7 +5,15 @@
 
 <div>
     <div class="row justify-content-center">
-        <button class="btn align-self-center"><i class="fa fa-home"></i> Play</button>
+        <button class="btn align-self-center"><i class="fas fa-play-circle fa-5x play-btn"></i></button>
+    </div>
+    <div class="row justify-content-center pt-2">
+        <div class="progress col-10 h-50 p-0">
+            <div class="progress-bar progress-section progress-bar-striped" role="progressbar" aria-valuenow="40"
+                 aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                40% Complete
+            </div>
+        </div>
     </div>
 
     <div class="row p-3">
@@ -32,32 +40,55 @@
 
     </div>
 
-        @if (Model != null)
+    @if (Model != null)
+    {
+        int index = 1;
+        int totalRecords = Model.pleayersList.Count();
+        foreach (var item in Model.pleayersList)
         {
-            int index = 1;
-            int totalRecords = Model.pleayersList.Count();
-            foreach (var item in Model.pleayersList)
-            {
-                <div class="row p-1 pt-2 border-bottom @(index == totalRecords ? "border-dark" : "")">
-                    <div class="col-1">
-                        <p class="text-info">@Html.DisplayFor(modelItem => index)</p>
-                    </div>
-                    <div class="col-5">
-                        @Html.DisplayFor(modelItem => item.firstName)
-                        @Html.DisplayFor(modelItem => item.lastName)
-                    </div>
+<div class="row p-1 pt-2 border-bottom @(index == totalRecords ? "border-dark" : "")">
+    <div class="col-1">
+        <p class="text-info">@Html.DisplayFor(modelItem => index)</p>
+    </div>
+    <div class="col-5">
+        @Html.DisplayFor(modelItem => item.firstName)
+        @Html.DisplayFor(modelItem => item.lastName)
+    </div>
 
-                    <div class="col-3">
-                        <button class="warning-btn">Warn</button>
-                    </div>
+    @if (index % 2 == 0)
+    {
+<div class="col-3">
+@*    <button class="warning-btn">Warn</button>*@
+    <a href="#" class="badge badge-primary">Primary</a>
 
-                    <div class="col-3">
-                        <button class="danger-btn">Stop</button>
-                    </div>
+</div>
+
+<div class="col-3 justify-content-end">
+    @*<button class="danger-btn">Stop</button>
+    *@
+    <a href="#" class="badge badge-primary">Primary</a>
+</div>
+    }
+    else
+    {
+        <div class="col-6 d-flex justify-content-end">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle custom-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    11/3
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-                index++;
-            }
+            </div>
+        </div>
+    }
+
+</div>
+            index++;
         }
+    }
 
 
 

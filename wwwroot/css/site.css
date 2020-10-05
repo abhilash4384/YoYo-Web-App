@@ -73,7 +73,6 @@ body {
 
 .warning-btn {
     background-color: #526287;
-    /*border: none;*/ 
     color: white; 
     padding: 0 10px;
     font-size: 14px;
@@ -90,4 +89,22 @@ body {
     font-size: 14px;
     cursor: pointer;
     border-radius: 15px;
+    height: 
+}
+
+.progress-section {
+    background-color: #ea776d;
+}
+
+.play-btn {
+    color: #ffffff;
+    background: black;
+    border-radius: 50%;
+}
+
+
+.custom-dropdown {
+    background-color: #fff;
+    color: #000;
+    border: 0px;
 }
