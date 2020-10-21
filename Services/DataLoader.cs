@@ -17,21 +17,21 @@ namespace YoYo_Web_App.Services
         {
             var pleayersList = new List<PlayersModel>
                 {
-               new PlayersModel() { firstName = "Ashton", lastName = "Eaton" },
-               new PlayersModel() { firstName = "Brayan", lastName = "Clay" },
-               new PlayersModel() { firstName = "Dean", lastName = "Karnazes" },
-               new PlayersModel() { firstName = "Usain", lastName = "Bolt" },
-               new PlayersModel() { firstName = "Dep", lastName = "Johny" },
-               new PlayersModel() { firstName = "Abhilash", lastName = "Virat" },
-               new PlayersModel() { firstName = "Sachin", lastName = "Tendulkar" },
-               new PlayersModel() { firstName = "James", lastName = "Bond" },
-               new PlayersModel() { firstName = "Steve", lastName = "Rogers" },
-               new PlayersModel() { firstName = "Scarlet", lastName = "Johnson" },
-               new PlayersModel() { firstName = "Emilie", lastName = "Clark" },
-               new PlayersModel() { firstName = "Diana", lastName = "Hayden" },
-               new PlayersModel() { firstName = "Salina", lastName = "Kayele" },
-               new PlayersModel() { firstName = "Ronaldo", lastName = "Christiano" },
-               new PlayersModel() { firstName = "Stephinie", lastName = "Mcmohan" }
+               new PlayersModel() {  _id = 1, firstName = "Ashton", lastName = "Eaton" },
+               new PlayersModel() {  _id = 2, firstName = "Brayan", lastName = "Clay" },
+               new PlayersModel() {  _id = 3, firstName = "Dean", lastName = "Karnazes" },
+               new PlayersModel() {  _id = 4, firstName = "Usain", lastName = "Bolt" },
+               new PlayersModel() {  _id = 5, firstName = "Dep", lastName = "Johny" },
+               new PlayersModel() {  _id = 6, firstName = "Abhilash", lastName = "Virat" },
+               new PlayersModel() {  _id = 7, firstName = "Sachin", lastName = "Tendulkar" },
+               new PlayersModel() {  _id = 8, firstName = "James", lastName = "Bond" },
+               new PlayersModel() {  _id = 9, firstName = "Steve", lastName = "Rogers" },
+               new PlayersModel() {  _id = 10, firstName = "Scarlet", lastName = "Johnson" },
+               new PlayersModel() {  _id = 11, firstName = "Emilie", lastName = "Clark" },
+               new PlayersModel() {  _id = 12, firstName = "Diana", lastName = "Hayden" },
+               new PlayersModel() {  _id = 13, firstName = "Salina", lastName = "Kayele" },
+               new PlayersModel() {  _id = 14, firstName = "Ronaldo", lastName = "Christiano" },
+               new PlayersModel() {  _id = 15, firstName = "Stephinie", lastName = "Mcmohan" }
                 };
 
 
@@ -52,7 +52,8 @@ namespace YoYo_Web_App.Services
                 }).ToList();
             }
 
-            return new YoYoViewModel { pleayersList = pleayersList, fintessRatinngMetaData = fintessRatinngMetaData };
+            var jsonData = JsonConvert.SerializeObject(new { pleayersList = pleayersList, fintessRatinngMetaData = fintessRatinngMetaData });
+            return new YoYoViewModel { pleayersList = pleayersList, fintessRatinngMetaData = fintessRatinngMetaData, JSONContent = jsonData };
 
         }
 

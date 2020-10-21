@@ -13,5 +13,9 @@ namespace YoYo_Web_App.Models
 
         public int shuttleNumber { get; set; }
 
+        public bool isWarned { get; set; }
+
+        public bool isStopped { get; set; }
+
     }
 }

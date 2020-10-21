@@ -10,5 +10,7 @@ namespace YoYo_Web_App.Models
         public IList<FintessRatingModel> fintessRatinngMetaData { get; set; }
 
         public IList<PlayersModel> pleayersList { get; set; }
+
+        public string JSONContent { get; set; }
     }
 }
